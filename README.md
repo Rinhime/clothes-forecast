@@ -1,24 +1,32 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# clothes forecast
+​
+## サイト概要
+### サイトテーマ
+<!--何を『目的』とし、どのような『分類』なのかを簡潔に書く-->
+​
+### テーマを選んだ理由
+<!--なぜこのようなテーマにしたかを説明する-->
+​私は仕事に行く日も、休日出かける日も天気や気温を確認してから洋服を決めていましたが
+服装に悩むことが多くネットなどで気温に見合った服装を確認していました気温や天気から服装の目安がわかると悩まずに済み便利だと考えました。
+### ターゲットユーザ
+<!--誰に使ってもらうかを具体的に記載する-->
+​このアプリケーションのターゲットとしましては、
+主に20代から50代の幅広い年代の方々です。
+### 主な利用シーン
+<!--どのような時に使うのかの状況を記載すること-->
+​
+## 設計書
+<!--テーマを設定・提出する時点では不要です-->
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+折りたたむ
