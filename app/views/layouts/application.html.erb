@@ -57,10 +57,10 @@
               <% else %>
               <!--ビューページ作成後リンクを付ける-->
                 <li class="nav-item p-3">
-                  <%= "新規登録" %>
+                  <%= link_to "新規登録", new_user_registration_path %>
                 </li>
                 <li class="nav-item p-3">
-                  <%= "ログイン" %>
+                  <%= link_to "ログイン", new_user_session_path %>
                 </li>
                 <li class="nav-item p-3">
                   <%= "服装一覧" %>

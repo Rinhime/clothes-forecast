@@ -20,5 +20,12 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  namespace :admin do
+    root to: "homes#top"
+    resources :clothes, only: [:new, :create, :index, :show, :edit, :update]
+    resources :users, only: [:index, :show]
+    resources :posts, only: [:destroy, :index, :show]
+    resources :comments, only: [:destroy]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
