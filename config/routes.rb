@@ -8,6 +8,13 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  namespace :public do
+    root to: "homes#top"
+    resources :clothes, only: [:create, :index, :show]
+    resources :users, only: [:show, :destoroy, :edit, :update, :withdraw]
+    resources :posts, only: [:index, :show]
+    resources :favorites, only: [:create, :destroy]
+  end
   # 管理者用
 # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
