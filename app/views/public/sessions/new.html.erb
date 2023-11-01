@@ -1,26 +1,32 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container py-3">
+  <div class="row py-3">
+    <div class="col-md-3 offset-md-1">
+      <h2>ログイン</h2>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="col-md-5 offset-md-1">
+      新規登録がお済みでない方は
+      <%= link_to "こちら", new_user_registration_path %>から
+    </div>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row">
+    <div class="col-md-10 offset-md-2">
+      <table cellpadding="7">
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <th><%= f.email_field :email, autofocus: true, autocomplete: "email", :size=>"30" %></th>
+        </tr>
+        <tr>
+          <th><%= f.label :パスワード %></th>
+          <th><%= f.password_field :password, autocomplete: "current-password", :size=>"30" %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7 offset-md-4 py-5">
+      <%= f.submit "ログイン" %>
+    </div>
+  </div>
+  <% end %>
+</div>
