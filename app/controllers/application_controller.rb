@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   def sign_in_path_for(resource)
     case resource
     when User
-      public_root_path
+      public_user_path
     when Admin
       admin_root_path
     end

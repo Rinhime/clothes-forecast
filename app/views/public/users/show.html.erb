@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 py-3">
+      <h5><%= @user.name%>さんのページ</h5>
+      
+      <%= image_tag @user.get_image(100,100) %>
+      <table>
+        <tr>
+          <td>ユーザーネーム</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <%= link_to "編集する", edit_public_user_path %>
+    </div>
+    <div class="col-md-7">
+      <h5>投稿一覧</h5>
+      <% @posts.each do |post| %>
+      
+      <% end %>
+      
+    </div>
+  </div>
+</div>
