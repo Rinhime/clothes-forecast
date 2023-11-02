@@ -1,15 +1,27 @@
-<div class="container">
-  <div class="row">
-    <h2>ユーザー編集</h2>
+<div class="container py-3">
+  <div class="row py-3">
+    <div class="col-md-2 offset-md-2"></div>
+      <h2>ユーザー編集</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
     <%= form_with model: @user, url: public_user_path, method: :patch do |f| %>
-    
-    <h5>ユーザーネーム</h5>
-    <%= f.text_field :name %>
-    <h5>メールアドレス</h5>
-    <%= f.text_field :email %>
-    <h5>画像</h5>
-    <%= f.file_field :image, accept: "image/*" %>
-    
+    <table cellpadding="7">
+      <tr>
+        <th>ユーザーネーム</th>
+        <td><%= f.text_field :name, :size=>"50" %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= f.text_field :email, :size=>"50" %></td>
+      </tr>
+      <tr>
+        <th>画像</th>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row justify-content-center py-5">
     <%= f.submit '変更を保存' %>
     <% end %>
   </div>
