@@ -1,0 +1,26 @@
+<div class="container py-3">
+  <div class="row py-3">
+    <div class="col-md-2 offset-md-2">
+      <h2>服装一覧</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-2">
+      <%= image_tag 'やじるし.jpg', size: "150x700" %>
+    </div>
+    <div class="col-md-2">
+      <% @clothes.each do |cloth| %>
+      <%= cloth.%>
+      
+      30℃以上 <br>
+      25~30℃<br>
+      20~25℃<br>
+      16~20℃<br>
+      12~16℃<br>
+      8~12℃<br>
+      5~8℃<br>
+      5℃未満
+      <% end %>
+    </div>
+  </div>
+</div>

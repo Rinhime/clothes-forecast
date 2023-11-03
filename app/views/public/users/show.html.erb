@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 py-3">
+    <div class="col-md-3 py-5">
       <h5><%= @user.name%>さんのページ</h5>
-      
-      <%= image_tag @user.get_image(100,100) %>
-      <table>
+      <div class="row p-3 mx-3">
+      <%= image_tag @user.get_image(100,100), size: "150x150" %>
+      </div>
+      <table cellpadding="5">
         <tr>
           <td>ユーザーネーム</td>
           <td><%= @user.name %></td>
@@ -16,10 +17,11 @@
       </table>
       <%= link_to "編集する", edit_public_user_path %>
     </div>
-    <div class="col-md-7">
-      <h5>投稿一覧</h5>
+    <div class="col-md-7 py-3">
+      <h2>投稿一覧</h2>
+      <!--投稿機能作成後、表示内容入力-->
       <% @posts.each do |post| %>
-      
+      <%= post.post_text %>
       <% end %>
       
     </div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
   namespace :public do
     root to: "homes#top"
     resources :clothes, only: [:create, :index, :show]
