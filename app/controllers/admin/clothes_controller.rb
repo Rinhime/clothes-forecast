@@ -1,11 +1,11 @@
 class Admin::ClothesController < ApplicationController
   
   def new
-    
+    @cloth = Cloth.new
   end
   
   def index
-    
+    @clothes = Clothe.all
   end
   
   def show

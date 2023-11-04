@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :clothes
   # devise_for :favorites
   # devise_for :comments
   # devise_for :posts
@@ -11,8 +12,11 @@ Rails.application.routes.draw do
   
   namespace :public do
     root to: "homes#top"
+    # topのURL /public...
+    get "/users/show" => "users#show"
+    get "/users/show/eidt" => "users#edit"
     resources :clothes, only: [:create, :index, :show]
-    resources :users, only: [:show, :destoroy, :edit, :update, :withdraw]
+    resources :users, only: [:destoroy, :update, :withdraw]
     resources :posts, only: [:index, :show]
     resources :favorites, only: [:create, :destroy]
   end
@@ -22,7 +26,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   namespace :admin do
-    root to: "homes#top"
+    get "/homes" => "homes#top"
     resources :clothes, only: [:new, :create, :index, :show, :edit, :update]
     resources :users, only: [:index, :show]
     resources :posts, only: [:destroy, :index, :show]

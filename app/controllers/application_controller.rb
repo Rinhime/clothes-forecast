@@ -1,19 +1,19 @@
 class ApplicationController < ActionController::Base
   
-  def sign_in_path_for(resource)
+  def after_sign_in_path_for(resource)
     case resource
     when User
-      public_user_path
+      public_usesr_show_path
     when Admin
-      admin_root_path
+      admin_clothes_path
     end
   end
   
-  def sign_out_path_for(resource)
+  def after_sign_out_path_for(resource)
     case resource
-    when User
-      public_root_path
-    when Admin
+    when :user
+      new_user_session_path
+    when :admin
       admin_root_path
     end
   end

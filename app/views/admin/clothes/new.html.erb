@@ -1,0 +1,17 @@
+<div class="container py-3"></div>
+  <div class="row py-3">
+    <div class="col-md-2 offset-md-2">
+      <h2>服装登録</h2>
+    </div>
+    <div class="row justify-content-center">
+      <%= form_with model:@cloth, url: admin_items_path do |f| %>
+      <h5>画像</h5>
+      <%= f.file_field :image, accept: "image/*" %>
+      <h5>気温</h5>
+      <%= f.text_field :celsius, :size=>"50" %>
+      <h5>説明文</h5>
+      <%= f.text_area :introduction, :size=>"52x10" %>
+      <% end %>
+    </div>
+  </div>
+</div>

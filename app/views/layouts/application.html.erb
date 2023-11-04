@@ -35,24 +35,24 @@
                 </li>
               <% else %>
                 <li class="nav-item p-3">
-                  <%= "服装一覧" %>
+                  <%= link_to "服装一覧", public_clothes_path %>
                 </li>
                 <li class="nav-iten p-3">
                   <%= "マイページ"%>
                 </li>
                 <li class="nav-item p-3">
-                  <%= link_to "ログアウト", destroy_admin_session_path %>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                 </li>
               <% end %>
               <% elsif user_signed_in? %>
                 <li class="nav-item p-3">
-                  <%= "服装一覧" %>
+                  <%= link_to "服装一覧", public_clothes_path %>
                 </li>
                 <li class="nav-item p-3">
                   <%= "マイページ" %>
                 </li>
                 <li class="nav-item p-3">
-                  <%= link_to "ログアウト", destroy_user_session_path %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
                 </li>
               <% else %>
               <!--ビューページ作成後リンクを付ける-->
