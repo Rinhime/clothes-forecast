@@ -1,17 +1,32 @@
-<div class="container py-3"></div>
+<div class="container py-3">
   <div class="row py-3">
-    <div class="col-md-2 offset-md-2">
-      <h2>服装登録</h2>
-    </div>
-    <div class="row justify-content-center">
-      <%= form_with model:@cloth, url: admin_items_path do |f| %>
-      <h5>画像</h5>
-      <%= f.file_field :image, accept: "image/*" %>
-      <h5>気温</h5>
-      <%= f.text_field :celsius, :size=>"50" %>
-      <h5>説明文</h5>
-      <%= f.text_area :introduction, :size=>"52x10" %>
-      <% end %>
-    </div>
+    <h2>服装登録</h2>
   </div>
+  
+  <div class="row justify-content-center">
+    <%= form_with model:@clothe, url: admin_clothes_path do |f| %>
+    <table cellpadding="7">
+      <tr>
+        <th><h5>画像</h5></th>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+      <tr>
+        <th><h5>気温</h5></th>
+        <td>
+          
+          <%= f.select :celsius,["30℃以上","25~30℃","20~25℃","16~20℃","12~16℃","8~12℃","5~8℃","5℃未満"] %>
+          
+        </td>
+      </tr>
+      <tr>
+        <th><h5>説明文</h5></th>
+        <td><%= f.text_area :introduction, :size=>"52x10" %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row justify-content-center py-5">
+    <%= f.submit '登録する' %>
+    <% end %>
+  </div>
+  
 </div>

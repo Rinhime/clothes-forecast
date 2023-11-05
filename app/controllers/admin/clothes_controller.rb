@@ -1,7 +1,7 @@
 class Admin::ClothesController < ApplicationController
   
   def new
-    @cloth = Cloth.new
+    @clothe = Clothe.new
   end
   
   def index
@@ -13,7 +13,9 @@ class Admin::ClothesController < ApplicationController
   end
   
   def create
-    
+    clothe = Clothe.new(clothe_params)
+    clothe.save
+    redirect_to admin_clothes_path
   end
   
   def edit
@@ -24,4 +26,10 @@ class Admin::ClothesController < ApplicationController
     
   end
   
+  private
+  
+    def clothe_params
+      params.require(:clothe).permit(:image, :celsius, :introduction)
+    end
+    
 end

@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :favorites
   
+  belongs_to :clothe
+  
   has_one_attached :image
   
   def get_image(width, height)
