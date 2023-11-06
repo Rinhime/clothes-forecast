@@ -1,0 +1,24 @@
+<div class="container py-3">
+  <div class="row py-3">
+    <h2>服装詳細</h2>
+  </div>
+  <div class="row py-3">
+    <div class="col-md-3">
+    <%= image_tag @clothe.get_image(100,100), size: "100x350" %>
+    </div>
+    <div class="col-md-5">
+      <div class="py-3">
+        <%= @clothe.celsius %><br>
+        <%= @clothe.introduction %>
+      </div>
+      <div class="py-3">
+        <%= form_with model:@post, url: public_posts_path do |f| %>
+        <%= f.text_area :post_text, :size=>"40x5" %><br>
+        
+        <%= f.hidden_field :celsius %>
+      </div>
+      <%= f.submit '投稿する' %>
+      <% end %>
+    </div>
+  </div>
+</div>

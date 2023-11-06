@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get "/users/show/eidt" => "users#edit"
     resources :clothes, only: [:create, :index, :show]
     resources :users, only: [:destoroy, :update, :withdraw]
-    resources :posts, only: [:index, :show]
+    resources :posts, only: [:index, :show, :create]
     resources :favorites, only: [:create, :destroy]
   end
   # 管理者用

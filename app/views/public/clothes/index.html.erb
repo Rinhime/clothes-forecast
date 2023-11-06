@@ -4,42 +4,15 @@
       <h2>服装一覧</h2>
     </div>
   </div>
-  <div class="row justify-content-center">
-    
-      <div class="fashion">
-        
-        <%= image_tag '30男.jpg', size: "75x220" %>
-        <%= image_tag '30女.jpg', size: "65x200" %><br>
-        30℃以上 
-        
-      </div>
-      <div class="fashion">
-        <%= image_tag '30-25男.jpg', size: "75x220" %>
-        <%= image_tag '30-25女.jpg', size: "75x220" %><br>
-        25~30℃
-      </div>
-      <div class="fashion">
-        <%= image_tag '25-20男.jpg', size: "75x220" %>
-        <%= image_tag '25-20女.jpg', size: "75x220" %><br>
-        20~25℃
-      </div>
-      <div class="fashion">
-        16~20℃
-      </div>
-      <div class="fashion">
-        12~16℃
-      </div>
-      <div class="fashion">
-        8~12℃
-      </div>
-      <div class="fashion">
-        5~8℃
-      </div>
-      <div class="fashion">
-        5℃未満
-      </div>
-
-      
-    
+  
+  <div class="row">
+    <% @clothes.each do |clothe| %>
+    <div class="col-md-1 mx-5">
+      <%= link_to public_clothe_path(clothe.id) do %>
+      <%= image_tag clothe.get_image(100,100), size: "70x250" %>
+      <%= clothe.celsius %>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </div>
