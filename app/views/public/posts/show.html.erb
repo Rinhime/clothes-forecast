@@ -1,1 +1,32 @@
-<h2>投稿詳細</h2>
+<div class="container py-3">
+  <div class="row py-3">
+    <h2>投稿詳細</h2>
+  </div>
+  <div class="row py-3">
+    
+      <div class="col-md-1">
+        <%= image_tag @post.user.get_image(100,100), size: "130x130" %><br>
+        <%= @post.user.name %>
+      </div>
+      <div class="col-md-3 offset-1">
+        <%= @post.clothe.celsius %><br>
+        <%= @post.text %><br>
+        <%= @post.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col-md-5">
+      <%= form_with model:@comment, url: public_comments_path, method: :post do |f| %>
+        <%= f.text_area :comment_text, :size=>"40x5" %>
+        <%= f.hidden_field :post_id, :value => @post.id %><br>
+        <%= f.submit 'コメントする' %>
+      <% end %>
+      </div>
+    </div>
+    <h5>コメント</h5>
+    <% @comments.each do |comment| %>
+      <%= comment.comment_text %>
+      
+    <% end %>
+  
+</div>

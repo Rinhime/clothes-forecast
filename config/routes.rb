@@ -17,8 +17,10 @@ Rails.application.routes.draw do
     get "/users/show/eidt" => "users#edit"
     resources :clothes, only: [:create, :index, :show]
     resources :users, only: [:destoroy, :update, :withdraw]
-    resources :posts, only: [:index, :show, :create]
+    # get "/piblic/posts/show" => "posts#show"
+    resources :posts, only: [:index, :create, :show]
     resources :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create]
   end
   # 管理者用
 # URL /admin/sign_in ...

@@ -12,10 +12,9 @@
         <%= @clothe.introduction %>
       </div>
       <div class="py-3">
-        <%= form_with model:@post, url: public_posts_path do |f| %>
-        <%= f.text_area :post_text, :size=>"40x5" %><br>
-        
-        <%= f.hidden_field :celsius %>
+        <%= form_with model:@post, url: public_posts_path, method: :post do |f| %>
+        <%= f.text_area :text, :size=>"40x5" %><br>
+        <%= f.hidden_field :clothe_id, :value => @clothe.id %>
       </div>
       <%= f.submit '投稿する' %>
       <% end %>

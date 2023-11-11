@@ -61,17 +61,23 @@ ActiveRecord::Schema.define(version: 2023_11_05_081631) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment_text", null: false
+    t.string "user_id", null: false
+    t.string "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "post_text", null: false
+    t.text "text", null: false
+    t.string "user_id", null: false
+    t.string "clothe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
