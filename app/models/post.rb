@@ -3,5 +3,5 @@ class Post < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
  belongs_to :clothe
  belongs_to :user
- has_many :comment
+ has_many :comment, dependent: :destroy
 end

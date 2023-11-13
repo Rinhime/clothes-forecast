@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = current_user
-    @posts = Post.all
+    @posts = @user.posts.all
   end
   
   def destroy

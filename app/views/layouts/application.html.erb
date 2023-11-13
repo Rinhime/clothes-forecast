@@ -37,8 +37,11 @@
                 <li class="nav-item p-3">
                   <%= link_to "服装一覧", public_clothes_path %>
                 </li>
+                <li class="nav-item p-3">
+                  <%= link_to "投稿一覧", public_posts_path %>
+                </li>
                 <li class="nav-iten p-3">
-                  <%= "マイページ"%>
+                  <%= link_to "マイページ", public_users_show_path %>
                 </li>
                 <li class="nav-item p-3">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
@@ -49,7 +52,10 @@
                   <%= link_to "服装一覧", public_clothes_path %>
                 </li>
                 <li class="nav-item p-3">
-                  <%= "マイページ" %>
+                  <%= link_to "投稿一覧", public_posts_path %>
+                </li>
+                <li class="nav-item p-3">
+                  <%= link_to "マイページ", public_users_show_path %>
                 </li>
                 <li class="nav-item p-3">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

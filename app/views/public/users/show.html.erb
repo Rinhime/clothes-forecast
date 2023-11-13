@@ -19,11 +19,24 @@
     </div>
     <div class="col-md-7 py-3">
       <h2>投稿一覧</h2>
-      <!--投稿機能作成後、表示内容入力-->
-      <% @posts.each do |post| %>
-      <%= post.post_text %>
-      <% end %>
-      
+      <table>
+        <thead>
+          <tr>
+            <th>気温</th>
+            <th>投稿内容</th>
+            <th>投稿日</th>
+          </tr>
+        </thead>
+        <% @posts.each do |post| %>
+        <tbody>
+          <tr>
+            <td><%= post.clothe.celsius %></td>
+            <td><%= post.text %></td>
+            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

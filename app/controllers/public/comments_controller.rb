@@ -1,10 +1,12 @@
 class Public::CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-    if @comment.save(comment_params)
+    post = Post.find(params[:post_id])
+    comment = current_user.comments.new(comment_params)
+    comment.post_id = params[:post_id]
+    
+    if comment.save
       # flash[:notice] ="You have created book successfully."
-      redirect_to public_post_path(@post)
+      redirect_to public_post_path(post)
     else
       @posts = Post.all
       redirect_to public_posts_path
@@ -14,7 +16,7 @@ class Public::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:comment_text, :user_id, :post_id)
+    params.require(:comment).permit(:comment_text)
   end
   
 end

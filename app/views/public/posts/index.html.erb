@@ -3,8 +3,30 @@
     <h2>投稿一覧</h2>
   </div>
   <div class="row py-3">
-    <%= @posts.each do |post| %>
-      <%= post.text %>
-    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>気温</th>
+          <th>投稿内容</th>
+        </tr>
+      </thead>
+      <%= @posts.each do |post| %>
+      <tbody>
+        <tr>
+          <td><%= post.user.name %></td>
+          <td><%= post.clothe.celsius %></td>
+          <td>
+            <%= link_to public_post_path(post.id) do %>
+            <%= post.text %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+    
+      
+    
   </div>
 </div>

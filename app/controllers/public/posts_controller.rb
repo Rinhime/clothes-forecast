@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = Comment.all
-    # @user = current_user
+    @comment = Comment.new
   end
 
   def create
