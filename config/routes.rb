@@ -19,9 +19,10 @@ Rails.application.routes.draw do
     resources :users, only: [:destoroy, :update, :withdraw]
     # get "/piblic/posts/show" => "posts#show"
     resources :posts, only: [:index, :create, :show] do
+      resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create]
     end
-    resources :favorites, only: [:create, :destroy]
+    
   end
   # 管理者用
 # URL /admin/sign_in ...

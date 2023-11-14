@@ -9,6 +9,7 @@
           <th>ユーザー</th>
           <th>気温</th>
           <th>投稿内容</th>
+          <th>いいね</th>
         </tr>
       </thead>
       <%= @posts.each do |post| %>
@@ -21,6 +22,7 @@
             <%= post.text %>
             <% end %>
           </td>
+          <td>♥<%= post.favorite.count %></td>
         </tr>
       </tbody>
       <% end %>
