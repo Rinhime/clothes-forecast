@@ -9,7 +9,7 @@ class Admin::ClothesController < ApplicationController
   end
   
   def show
-    
+    @clothe = Clothe.find(params[:id])
   end
   
   def create
@@ -19,7 +19,7 @@ class Admin::ClothesController < ApplicationController
   end
   
   def edit
-    
+    @clothe = Clothe.find(params[:id])
   end
   
   def update

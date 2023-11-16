@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get "/homes" => "homes#top"
+    # get "/clothes/new" => "clothes#new"
     resources :clothes, only: [:new, :create, :index, :show, :edit, :update]
     resources :users, only: [:index, :show]
     resources :posts, only: [:destroy, :index, :show]
