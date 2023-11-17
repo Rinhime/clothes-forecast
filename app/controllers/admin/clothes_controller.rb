@@ -23,7 +23,9 @@ class Admin::ClothesController < ApplicationController
   end
   
   def update
-    
+    @clothe = Clothe.find(params[:id])
+    @clothe.update(clothe_params)
+    redirect_to admin_clothe_path(@clothe.id)
   end
   
   private

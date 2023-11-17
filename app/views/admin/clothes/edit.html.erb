@@ -1,0 +1,26 @@
+<div class="container py-3">
+  <div class="row py-3">
+    <h2>服装編集</h2>
+  </div>
+  <div class="row justify-content-center">
+    <%= form_with model: @user, url: public_users_show_path, method: :patch do |f| %>
+    <table cellpadding="7">
+      <tr>
+        <th>画像</th>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+      <tr>
+        <th>気温</th>
+        <td><%= f.select :celsius,["30℃~","25~30℃","20~25℃","16~20℃","12~16℃","8~12℃","5~8℃","5℃未満"] %></td>
+      </tr>
+      <tr>
+        <th>説明文</th>
+        <td><%= f.text_area :introduction, :size =>"53x10"%></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row justify-content-center py-5">
+    <%= f.submit "変更する" %>
+    <% end %>
+  </div>
+</div>
