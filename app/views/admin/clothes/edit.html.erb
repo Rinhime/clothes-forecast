@@ -3,7 +3,7 @@
     <h2>服装編集</h2>
   </div>
   <div class="row justify-content-center">
-    <%= form_with model: @user, url: public_users_show_path, method: :patch do |f| %>
+    <%= form_with model: @clothe, url: admin_clothe_path, method: :patch do |f| %>
     <table cellpadding="7">
       <tr>
         <th>画像</th>
