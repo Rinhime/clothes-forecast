@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     get "/users/show" => "users#show"
     get "/users/show/eidt" => "users#edit"
     resources :clothes, only: [:create, :index, :show]
-    resources :users, only: [:destoroy, :update, :withdraw]
+    resources :users, only: [:destoroy, :update]
+      member do
+        get :favorites
+      end
     # get "/piblic/posts/show" => "posts#show"
     resources :posts, only: [:index, :create, :show] do
       resource :favorites, only: [:create, :destroy]

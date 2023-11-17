@@ -7,19 +7,24 @@
       </div>
       <table cellpadding="5">
         <tr>
-          <td>ユーザーネーム</td>
+          <th>ユーザーネーム</th>
+        </tr>
+        <tr>
           <td><%= @user.name %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <th>メールアドレス</th>
+        </tr>
+        <tr>
           <td><%= @user.email %></td>
         </tr>
       </table>
       <%= link_to "編集する", public_users_show_eidt_path %>
+      <%= link_to "いいね一覧", %>
     </div>
-    <div class="col-md-7 py-3">
+    <div class="col-md-7 py-5">
       <h2>投稿一覧</h2>
-      <table>
+      <table cellpadding="10">
         <thead>
           <tr>
             <th>気温</th>
