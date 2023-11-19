@@ -16,12 +16,13 @@ Rails.application.routes.draw do
     get "/users/show" => "users#show"
     get "/users/show/eidt" => "users#edit"
     resources :clothes, only: [:create, :index, :show]
-    resources :users, only: [:destoroy, :update]
+    resources :users, only: [:destoroy, :update] do
       member do
         get :favorites
       end
+    end
     # get "/piblic/posts/show" => "posts#show"
-    resources :posts, only: [:index, :create, :show] do
+    resources :posts, only: [:index, :create, :show, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create]
     end
@@ -39,5 +40,5 @@ Rails.application.routes.draw do
     resources :posts, only: [:destroy, :index, :show]
     resources :comments, only: [:destroy]
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 end

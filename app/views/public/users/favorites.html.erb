@@ -1,11 +1,53 @@
-<table class="table">
-  <tbody>
-  <% @favorite_posts.each do |post| %>
-    <tr>
-      <td>
-        <%= link_to post.title, post_path(@post) %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 py-5">
+      <h5><%= @user.name%>さんのページ</h5>
+      <div class="row p-3 mx-3">
+      <%= image_tag @user.get_image(100,100), size: "150x150" %>
+      </div>
+      <table cellpadding="5">
+        <tr>
+          <th>ユーザーネーム</th>
+        </tr>
+        <tr>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+        </tr>
+        <tr>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <p><%= link_to "編集する", public_users_show_eidt_path %></p>
+      <p><%= link_to "いいね一覧", favorites_public_user_path(@user) %></p>
+    </div>
+    <div class="col-md-7 py-5">
+      <h2>いいね一覧</h2>
+      <table class="table" cellpadding="10">
+        <thead>
+          <tr>
+            <th>ユーザー名</th>
+            <th>気温</th>
+            <th>投稿内容</th>
+            <th>投稿日</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @favorite_posts.each do |post| %>
+          <tr>
+            <td><%= post.user.name %></td>
+            <td><%= post.clothe.celsius %></td>
+            <td>
+              <%= link_to public_post_path(post.id) do %>
+              <%= post.text %>
+              <% end %>
+            </td>
+            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

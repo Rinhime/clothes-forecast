@@ -19,11 +19,12 @@
           <td><%= @user.email %></td>
         </tr>
       </table>
-      <%= link_to "編集する", public_users_show_eidt_path %>
-      <%= link_to "いいね一覧", %>
+      <p><%= link_to "編集する", public_users_show_eidt_path %></p>
+      <p><%= link_to "いいね一覧", favorites_public_user_path(@user) %></p>
     </div>
     <div class="col-md-7 py-5">
       <h2>投稿一覧</h2>
+      <h5><%= flash[:notice] %></h5>
       <table cellpadding="10">
         <thead>
           <tr>
@@ -36,8 +37,9 @@
         <tbody>
           <tr>
             <td><%= post.clothe.celsius %></td>
-            <td><%= post.text %></td>
+            <td width="350px"><%= post.text %></td>
             <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= link_to "削除する", public_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
           </tr>
         </tbody>
         <% end %>
