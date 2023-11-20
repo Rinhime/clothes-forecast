@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     # topのURL /public...
     get "/users/show" => "users#show"
     get "/users/show/eidt" => "users#edit"
+    # タグの検索で使用する
+    get "search_tag" => "post#search_tag"
     resources :clothes, only: [:create, :index, :show]
     resources :users, only: [:destoroy, :update] do
       member do
@@ -40,5 +42,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:destroy, :index, :show]
     resources :comments, only: [:destroy]
   end
+  
   
 end

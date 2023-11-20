@@ -21,8 +21,10 @@ class Public::PostsController < ApplicationController
     # 分岐あり
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tag_list = params[:post][:tag_name].split(',')
     if @post.save
       # flash[:notice] ="You have created book successfully."
+      @post.save_tag(tag_list)
       redirect_to public_post_path(@post)
     else
       @posts = Post.all
@@ -30,6 +32,15 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def search_tag
+    #検索結果画面でもタグ一覧表示
+    @tag_list = Tag.all
+    　#検索されたタグを受け取る
+    @tag = Tag.find(params[:tag_id])
+    　#検索されたタグに紐づく投稿を表示
+    @posts = @tag.posts
+  end
+  
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
