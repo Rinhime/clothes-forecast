@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @tag_list = Tag.all
   end
 
   def show
@@ -52,5 +53,8 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:text, :user_id, :clothe_id)
   end
+  
+  def article_params
+    params.require(:)
 
 end

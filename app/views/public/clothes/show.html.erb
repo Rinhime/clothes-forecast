@@ -16,6 +16,11 @@
       <div class="py-3">
         <%= form_with model:@post, url: public_posts_path, method: :post do |f| %>
         <%= f.text_area :text, :size=>"40x5" %><br>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
+          <%= tag.label class: 'form-check-label' do %>
+            <%= tag.check_box class: 'form-check-input' %>
+            <%= tag.text %>
+          <% end %>
         <%= f.hidden_field :clothe_id, :value => @clothe.id %>
       </div>
       <%= f.submit '投稿する' %>

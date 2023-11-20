@@ -6,6 +6,10 @@
   </div>
   
   <div class="row">
+    <!--タグリスト-->
+    <% @tag_list.each do |list| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+      <%= link_to list.name.search_tag_path()%>
     <% @clothes.each do |clothe| %>
     <div class="col-md-1 mx-5">
       <%= link_to public_clothe_path(clothe.id) do %>
