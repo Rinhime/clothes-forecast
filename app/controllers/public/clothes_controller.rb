@@ -2,11 +2,13 @@ class Public::ClothesController < ApplicationController
   
   def index
     @clothes = Clothe.all
+    @tag_list = Tag.all
   end
   
   def show
     @clothe = Clothe.find(params[:id])
     @post = Post.new
+    @tag_list = @post.tag.pluck(:tag_name).join(',')
   end
   
   # def create

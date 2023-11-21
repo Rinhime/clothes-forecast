@@ -1,8 +1,19 @@
 class Public::PostsController < ApplicationController
 
   def index
+    # 検索フォームに入力があった場合
+    if params[:search].present?
+      @posts = Post.posts_serach(params[:search])
+    # タグで絞込んだ場合
+    elsif params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.order(created_at: :desc)
+    # 普通にページを表示させた場合
+    else
+      @posts = Post.all.order(created_at: :desc)
+    end
+    @tags = Tag.all
     @posts = Post.all
-    @tag_list = Tag.all
   end
 
   def show
@@ -12,20 +23,14 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    # 分岐なし
-    # @post = Post.new(post_params)
-    # @post.user_id = current_user.id
-
-    # @post.save
-    # redirect_to public_post_path(@post)
-
     # 分岐あり
     @post = Post.new(post_params)
+    tag_list = params[:post][:tag_name].split(nil)
     @post.user_id = current_user.id
     tag_list = params[:post][:tag_name].split(',')
     if @post.save
       # flash[:notice] ="You have created book successfully."
-      @post.save_tag(tag_list)
+      @post.save_posts(tag_list)
       redirect_to public_post_path(@post)
     else
       @posts = Post.all
@@ -48,13 +53,13 @@ class Public::PostsController < ApplicationController
     flash[:notice] = "投稿を削除しました"
     redirect_to public_users_show_path
   end
+  
   private
 
   def post_params
     params.require(:post).permit(:text, :user_id, :clothe_id)
   end
   
-  def article_params
-    params.require(:)
+  
 
 end

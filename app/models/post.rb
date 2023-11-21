@@ -8,17 +8,25 @@ class Post < ApplicationRecord
  has_many :post_tag, dependent: :destroy
  has_many :tag, through: :post_tag
  
+ # before_validation :downcase_tag_name
+ # validates :tag_name, presence: true, uniqueness: { case_sensitive: false }
+ 
  def favorited_by?(user)
    favorite.exists?(user_id: user.id)
  end
  
- def save_tag(tags)
+ #検索メソッド、タイトルと内容をあいまい検索する
+ def self.posts_serach(search)
+   Post.where('text LIKE ?', "%#{search}%")
+ end
+ 
+ def save_posts(tag_list)
   # タグが存在していれば、タグの名前を配列として全て取得
-   current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+   current_tags = self.tag.pluck(:tag_name) unless self.tag.nil?
   # 現在取得したタグから送られてきたタグを除いてoldtagとする
-   old_tags = current_tags - tags
+   old_tags = current_tags - tag
    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
-   new_tags = tags - current_tags
+   new_tags = tag - current_tags
    
    
    # 古いタグを消す
@@ -27,10 +35,16 @@ class Post < ApplicationRecord
    end
    
    # 新しいタグを保存
-   new_tags.each do |new_name|
+   new_tags.each do |new_tag_name|
      _tag = Tag.find_or_create_by(tag_name:new_tag_name)
-     self.tags << tags
+     self.tag << tag
    end
  end
+ 
+ # private
+
+ #   def downcase_name
+ #     self.tag_name = tag_name.downcase if name.present?
+ #   end
  
 end

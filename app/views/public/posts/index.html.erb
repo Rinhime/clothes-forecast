@@ -2,6 +2,10 @@
   <div class="row py-3">
     <h2>投稿一覧</h2>
   </div>
+  <% @tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+      <%= link_to tag.tag_name,public_search_tag_path(tag_id: tag.id) %>
+    <% end %>
   <div class="row py-3">
     <table class="table" cellpadding="10">
       <thead>
@@ -12,7 +16,7 @@
           <th>いいね</th>
         </tr>
       </thead>
-      <%= @posts.each do |post| %>
+      <% @posts.each do |post| %>
       <tbody>
         <tr>
           <td><%= post.user.name %></td>
