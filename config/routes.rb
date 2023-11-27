@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     get "/users/show/eidt" => "users#edit"
     # タグの検索で使用する
     get "search_tag" => "post#search_tag"
-    get 'post/search', to: 'post#search'
     # get "/post/search_tag/:id" => "posts#search_tag"
     resources :clothes, only: [:create, :index, :show]
     resources :users, only: [:destoroy, :update] do
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create, :show, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create]
+      # resources :tags, only: [:create]
     end
     
   end

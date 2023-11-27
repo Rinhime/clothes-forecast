@@ -8,7 +8,7 @@ class Public::ClothesController < ApplicationController
   def show
     @clothe = Clothe.find(params[:id])
     @post = Post.new
-    @tag_list = @post.tag.pluck(:tag_name).join(',')
+    @tag = Tag.new
   end
   
   # def create

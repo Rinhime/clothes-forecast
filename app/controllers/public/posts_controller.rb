@@ -20,18 +20,19 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comment.all
     @comment = Comment.new
-    @post_tag_list = @post.tag
+    #@post_tag_list = @post.tag
   end
 
   def create
     # 分岐あり
     @post = Post.new(post_params)
-    tag_list = params[:post][:tag_name].split(nil)
+    #binding.pry
+    tag_list = params[:post][:post_tag][:tag_name].split(nil)
     @post.user_id = current_user.id
-    tag_list = params[:post][:tag_name].split(',')
+    # tag_list = params[:post][:tag_name].split(',')
     if @post.save
       # flash[:notice] ="You have created book successfully."
-      @post.save_posts(tag_list)
+      #@post.save_posts(tag_list)
       redirect_to public_post_path(@post)
     else
       @posts = Post.all
@@ -47,20 +48,20 @@ class Public::PostsController < ApplicationController
     　#検索されたタグに紐づく投稿を表示
     @posts = @tag.posts
   end
-  
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "投稿を削除しました"
     redirect_to public_users_show_path
   end
-  
+
   private
 
   def post_params
-    params.require(:post).permit(:text, :user_id, :clothe_id)
+    params.require(:post).permit(:text, :user_id, :clothe_id, post_tags_attributes: [:tag_name])
   end
-  
-  
+
+
 
 end

@@ -2,9 +2,9 @@
   <div class="row py-3">
     <h2>投稿詳細</h2>
   </div>
-  
+
     <div class="row py-3">
-    
+
       <div class="col-md-2">
         <%= image_tag @post.user.get_image(100,100), size: "130x130" %><br>
         <%= @post.user.name %>
@@ -24,11 +24,11 @@
           </tr>
           <tr>
             <td>
-              
-              <% @post_tag_list.each do |tag| %>
-              <%= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
-              <%="(#{tag.books.count})" %>
-              <% end %>
+
+              <%# @post_tag_list.each do |tag| %>
+              <%#= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
+              <%#="(#{tag.books.count})" %>
+              <%# end %>
               <% if @post.favorited_by?(current_user) %>
                 <p>
                   <%= link_to public_post_favorites_path(@post), method: :delete do %>
@@ -62,7 +62,7 @@
       <div class="col-md-5">
       <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
         <%= f.text_area :comment_text, placeholder: "コメントをここに", :size=>"40x5" %>
-        
+
         <%= f.hidden_field :post_id, :value => @post.id %><br><br>
         <%= f.submit 'コメントする' %><br><br>
       <% end %>
@@ -70,6 +70,6 @@
       </div>
     </div>
     <div class="row py-3">
-    
+
     </div>
 </div>
