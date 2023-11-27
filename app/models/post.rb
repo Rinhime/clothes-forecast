@@ -36,7 +36,7 @@ class Post < ApplicationRecord
    
    # 新しいタグを保存
    new_tags.each do |new_tag_name|
-     _tag = Tag.find_or_create_by(tag_name:new_tag_name)
+     tag = Tag.find_or_create_by(tag_name:new_tag_name)
      self.tag << tag
    end
  end

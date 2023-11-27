@@ -7,12 +7,12 @@ class Public::PostsController < ApplicationController
     # タグで絞込んだ場合
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.order(created_at: :desc)
+      @posts = @tag.post.order(created_at: :desc)
     # 普通にページを表示させた場合
     else
       @posts = Post.all.order(created_at: :desc)
     end
-    @tags = Tag.all
+    @tag_list = Tag.all
     @posts = Post.all
   end
 
@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comment.all
     @comment = Comment.new
+    @post_tag_list = @post.tag
   end
 
   def create
