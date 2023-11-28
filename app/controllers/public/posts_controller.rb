@@ -1,5 +1,9 @@
 class Public::PostsController < ApplicationController
 
+  def new
+    @post.post_tags.build
+  end
+  
   def index
     # 検索フォームに入力があった場合
     if params[:search].present?
@@ -7,13 +11,13 @@ class Public::PostsController < ApplicationController
     # タグで絞込んだ場合
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.post.order(created_at: :desc)
+      @posts = Post.includes(:post_tags).where('post_tags.tag_id': @tag.id).order(created_at: :desc)
     # 普通にページを表示させた場合
     else
       @posts = Post.all.order(created_at: :desc)
     end
     @tag_list = Tag.all
-    @posts = Post.all
+
   end
 
   def show
@@ -25,10 +29,10 @@ class Public::PostsController < ApplicationController
 
   def create
     # 分岐あり
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     #binding.pry
-    tag_list = params[:post][:post_tag][:tag_name].split(nil)
-    @post.user_id = current_user.id
+    #tag_list = params[:post][:post_tag][:tag_name].split(nil)
+    #@post.user_id = current_user.id
     # tag_list = params[:post][:tag_name].split(',')
     if @post.save
       # flash[:notice] ="You have created book successfully."
@@ -36,6 +40,7 @@ class Public::PostsController < ApplicationController
       redirect_to public_post_path(@post)
     else
       @posts = Post.all
+      @tag_list = Tag.all
       render :index
     end
   end
@@ -59,7 +64,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:text, :user_id, :clothe_id, post_tags_attributes: [:tag_name])
+    params.require(:post).permit(:text, :user_id, :clothe_id, post_tags_attributes: [:tag_name, :_destroy] )
   end
 
 

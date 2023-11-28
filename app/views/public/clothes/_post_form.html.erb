@@ -1,0 +1,13 @@
+<%= form_with(model:post, url: public_posts_path, method: :post) do |f| %>
+  <%= f.text_area :text, :size=>"40x5" %><br>
+  <div id="post_tags">
+    <%= f.fields_for :post_tags do |t| %>
+      <%= render 'public/clothes/post_tag_fields', f: t %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add_tag', f, :post_tags, class: "btn btn-primary" %>
+    </div>
+  </div>
+  <%= f.hidden_field :clothe_id, :value => clothe.id %>
+  <%= f.submit '投稿する' %>
+<% end %>

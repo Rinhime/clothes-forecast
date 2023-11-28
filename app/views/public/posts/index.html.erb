@@ -3,7 +3,7 @@
   
   <h6>タグで探す</h6>
   <% @tag_list.each do |tag| %>
-  <%= link_to tag.tag_name, public_posts_path(tag_id: tag.id) %>
+  <%= link_to tag.name, public_posts_path(tag_id: tag.id) %>
   <% end %>
 </div>
 <div class="container py-3">
@@ -11,7 +11,7 @@
     <h2>投稿一覧</h2>
   </div>
   <% @tag_list.each do |tag| %>
-    <%= link_to "##{tag.tag_name}", public_posts_path(tag_id: tag.id) %>
+    <%= link_to "##{tag.name}", public_posts_path(tag_id: tag.id) %>
   <% end %>
   <div class="row py-3">
     <table class="table" cellpadding="10">

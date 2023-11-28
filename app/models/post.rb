@@ -5,10 +5,44 @@ class Post < ApplicationRecord
  belongs_to :user
  has_many :comment, dependent: :destroy
  has_many :favorite, dependent: :destroy
- has_many :post_tags, dependent: :destroy
- #has_many :tag, through: :post_tags
 
- accepts_nested_attributes_for :post_tags, allow_destroy: true
+ has_many :post_tags, dependent: :destroy
+ has_many :tags, through: :post_tags
+ 
+ attr_accessor :post_tags_attributes
+
+before_validation :tags_count_check 
+after_save :tag_set
+
+def tags_count_check
+  tag_names = self.post_tags_attributes.values.map{|o|o['tag_name']}.reject(&:blank?)
+  #byebug
+  if tag_names.blank?
+    errors.add(:base, "tagha1koiretekudasai")
+  end
+end
+ 
+def tag_set
+  old_tag_names = self.tags.pluck(:name)
+  tag_names = self.post_tags_attributes.values.map{|o|o['tag_name']}.reject(&:blank?)
+  reject_tag_names = old_tag_names - tag_names
+  new_tag_names = tag_names - old_tag_names
+  new_tag_names.each do |tag_name|
+    tag = Tag.find_or_create_by(name: tag_name)
+    self.post_tags.find_or_create_by(tag_id: tag.id)
+  end
+  reject_tag_names.each do |tag_name|
+    tag = Tag.find_by(name: tag_name)
+    if tag.post_tags.size <= 1
+      tag.destroy if tag
+    else
+      post_tag = tag.post_tags.find_by(post_id: self.id)
+      post_tag.destroy if post_tag
+    end
+  end
+end
+
+ #accepts_nested_attributes_for :tags, allow_destroy: true
 
  # before_validation :downcase_tag_name
  # validates :tag_name, presence: true, uniqueness: { case_sensitive: false }

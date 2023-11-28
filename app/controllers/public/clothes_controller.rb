@@ -8,6 +8,7 @@ class Public::ClothesController < ApplicationController
   def show
     @clothe = Clothe.find(params[:id])
     @post = Post.new
+    @post.post_tags.build
     @tag = Tag.new
   end
   

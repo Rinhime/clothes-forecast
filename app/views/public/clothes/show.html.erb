@@ -14,15 +14,7 @@
       </div>
   <!--ここまでadmin/clothe/showと同じ-->
       <div class="py-3">
-        <%= form_with(model:@post, url: public_posts_path, method: :post) do |f| %>
-        <%= f.text_area :text, :size=>"40x5" %><br>
-        <label>タグ</label>
-        <%= f.fields_for :post_tags do |t| %>
-          <%= t.text_field :tag_name %>
-        <% end %>
-        <%= f.hidden_field :clothe_id, :value => @clothe.id %>
-      <%= f.submit '投稿する' %>
-      <% end %>
+        <%= render "public/clothes/post_form", post: @post, clothe: @clothe %>
       </div>
     </div>
   </div>
