@@ -8,25 +8,26 @@ class Post < ApplicationRecord
 
  has_many :post_tags, dependent: :destroy
  has_many :tags, through: :post_tags
- 
+
  attr_accessor :post_tags_attributes
 
-before_validation :tags_count_check 
+before_validation :tags_count_check
 after_save :tag_set
 
 def tags_count_check
   tag_names = self.post_tags_attributes.values.map{|o|o['tag_name']}.reject(&:blank?)
   #byebug
   if tag_names.blank?
-    errors.add(:base, "tagha1koiretekudasai")
+    errors.add(:base, "タグは1つ以上入れてください")
   end
 end
- 
+
 def tag_set
   old_tag_names = self.tags.pluck(:name)
   tag_names = self.post_tags_attributes.values.map{|o|o['tag_name']}.reject(&:blank?)
   reject_tag_names = old_tag_names - tag_names
   new_tag_names = tag_names - old_tag_names
+
   new_tag_names.each do |tag_name|
     tag = Tag.find_or_create_by(name: tag_name)
     self.post_tags.find_or_create_by(tag_id: tag.id)
@@ -77,6 +78,19 @@ end
    end
  end
 
+ def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @post = Post.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @post = Post.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @post = Post.where("title LIKE?","%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
  # private
 
  #   def downcase_name

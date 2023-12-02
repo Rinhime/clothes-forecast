@@ -1,42 +1,55 @@
-
-<div class="serch_form">
-  
-  <h6>タグで探す</h6>
-  <% @tag_list.each do |tag| %>
-  <%= link_to tag.name, public_posts_path(tag_id: tag.id) %>
-  <% end %>
-</div>
 <div class="container py-3">
-  <div class="row py-3">
-    <h2>投稿一覧</h2>
-  </div>
-  <% @tag_list.each do |tag| %>
-    <%= link_to "##{tag.name}", public_posts_path(tag_id: tag.id) %>
-  <% end %>
-  <div class="row py-3">
-    <table class="table" cellpadding="10">
-      <thead>
-        <tr>
-          <th>ユーザー</th>
-          <th>気温</th>
-          <th>投稿内容</th>
-          <th>いいね</th>
-        </tr>
-      </thead>
-      <% @posts.each do |post| %>
-      <tbody>
-        <tr>
-          <td><%= post.user.name %></td>
-          <td><%= post.clothe.celsius %></td>
-          <td width="600px">
-            <%= link_to public_post_path(post.id) do %>
-            <%= post.text %>
-            <% end %>
-          </td>
-          <td>♥<%= post.favorite.count %></td>
-        </tr>
-      </tbody>
+  <div class="row">
+    <div class="col-md-2 p-3 m-3">
+      <div class="serch_form">
+        <% if user_signed_in? %>
+          <%= form_with url: public_search_path, local: true, method: :get do |f| %>
+            <%= f.text_field :word %>
+            <%= f.select :range, options_for_select([['User'], ['Post']]) %>
+            <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+            <%= f.submit "検索", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+        <h6>タグで探す</h6>
+        <% @tag_list.each do |tag| %>
+        <%= link_to tag.name, public_posts_path(tag_id: tag.id) %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-9 p-3">
+      <div class="row py-3">
+        <h2>投稿一覧</h2>
+      </div>
+      <% @tag_list.each do |tag| %>
+        <%= link_to "##{tag.name}", public_posts_path(tag_id: tag.id) %>
       <% end %>
-    </table>
+      <div class="row py-3">
+        <table class="table" cellpadding="10">
+          <thead>
+            <tr>
+              <th>ユーザー</th>
+              <th>気温</th>
+              <th>投稿内容</th>
+              <th>いいね</th>
+            </tr>
+          </thead>
+          <% @posts.each do |post| %>
+          <tbody>
+            <tr>
+              <td><%= post.user.name %></td>
+              <td><%= post.clothe.celsius %></td>
+              <td width="600px">
+                <%= link_to public_post_path(post.id) do %>
+                <%= post.text %>
+                <% end %>
+              </td>
+              <td>♥<%= post.favorite.count %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+        </div>
+    </div>
   </div>
 </div>
