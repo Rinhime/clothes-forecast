@@ -44,7 +44,18 @@ class Public::PostsController < ApplicationController
       render :index
     end
   end
+  
+  def search
+    @range = params[:range]
 
+    if @range == "User"
+      @users = User.looks(params[:search], params[:word])
+      # @posts = @users.posts.all
+    else
+      @posts = Post.looks(params[:search], params[:word])
+    end
+  end
+  
   def search_tag
     #検索結果画面でもタグ一覧表示
     @tag_list = Tag.all

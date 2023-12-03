@@ -1,0 +1,46 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>気温</th>
+      <th>投稿内容</th>
+      <th>いいね</th>
+    </tr>
+  </thead>
+  <% if @range == "User" %>
+    <tbody>
+      
+        <tr>
+          <td>
+            <% @users.each do |user| %>
+            <%= user.name %>
+            <% end %>
+          </td>
+        </tr>
+      
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+    <tbody>
+      <% @posts.each do |post| %>
+      
+        <tr>
+          
+          <td><%= post.user.name %></td>
+          <td><%= post.clothe.celsius %></td>
+          <td>
+            <%= link_to public_post_path(post.id) do %>
+            <%= post.text %>
+            <% end %>
+          </td>
+          <td>♥<%= post.favorite.count %></td>
+          
+        </tr>
+        
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
