@@ -12,20 +12,19 @@
   </thead>
   <% if @range == "User" %>
     <tbody>
-      
+      <% @users.each do |user| %>
         <tr>
           <td>
-            <% @users.each do |user| %>
+            
             <%= user.name %>
-            <% end %>
           </td>
           <td>
-            <% @posts.each do |post| %>
+            <% user.posts.each do |post| %>
             <%= post.text %>
             <% end %>
           </td>
         </tr>
-      
+      <% end %>
     </tbody>
   <% else %>
     <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->

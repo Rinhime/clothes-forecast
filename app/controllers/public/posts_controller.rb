@@ -1,8 +1,5 @@
 class Public::PostsController < ApplicationController
-
-  def new
-    @post.post_tags.build
-  end
+before_action :authenticate_user!
   
   def index
     # 検索フォームに入力があった場合
@@ -50,7 +47,7 @@ class Public::PostsController < ApplicationController
 
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
-      @posts = @users.post.all
+      # @posts = @users.posts.all
     else
       @posts = Post.looks(params[:search], params[:word])
     end

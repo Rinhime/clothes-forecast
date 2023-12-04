@@ -1,5 +1,5 @@
 class Public::FavoritesController < ApplicationController
-  
+  before_action :authenticate_user!, except: [:create, :destroy]
   # def index
   #   @favorites = Favorite.all
   # end

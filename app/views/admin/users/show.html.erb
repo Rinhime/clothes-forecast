@@ -50,7 +50,11 @@
       <tbody>
         <tr>
           <td><%= post.clothe.celsius %></td>
-          <td width="350px"><%= post.text %></td>
+          <td width="350px">
+            <%= link_to admin_comments_path do %>
+            <%= post.text %>
+            <% end %>
+          </td>
           <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
           <td><%= link_to "削除する", admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class:'btn btn-sm btn-danger'%></td>
         </tr>

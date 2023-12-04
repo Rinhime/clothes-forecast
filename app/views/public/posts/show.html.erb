@@ -19,7 +19,10 @@
           </tr>
           <tr>
             <td>
-              <%= @post.text %>
+              <%= @post.text %><br>
+              <% @post.tags.each do |tag| %>
+              #<%= tag.name %>
+              <% end %>
             </td>
           </tr>
           <tr>

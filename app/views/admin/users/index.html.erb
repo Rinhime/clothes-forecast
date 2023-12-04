@@ -6,7 +6,7 @@
   </div>
   <div class="row justify-content-center py-3">
     <table  class="table" cellpadding="10">
-      <thead>
+      <thead align="center">
         <tr>
           <th>ユーザーID</th>
           <th>ユーザー名</th>
@@ -14,7 +14,7 @@
           <th>アカウント</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody align="center">
         <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
@@ -24,6 +24,7 @@
             <% end %>
           </td>
           <td><%= user.email %></td>
+          <td><%= user.user_status %></td>
         </tr>
         <% end %>
         <%= paginate @users %>

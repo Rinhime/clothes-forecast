@@ -26,4 +26,12 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+  
+  def user_status
+    if is_deleted == true
+      "✕"
+    else
+      "〇"
+    end
+  end
 end
