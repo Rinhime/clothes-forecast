@@ -5,7 +5,12 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts.all
   end
   
-  def destroy
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行しました"
+    redirect_to public_root_path
   end
   
   def edit

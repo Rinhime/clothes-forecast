@@ -50,7 +50,7 @@ class Public::PostsController < ApplicationController
 
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
-      # @posts = @users.posts.all
+      @posts = @users.post.all
     else
       @posts = Post.looks(params[:search], params[:word])
     end

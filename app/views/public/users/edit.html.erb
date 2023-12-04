@@ -1,6 +1,6 @@
 <div class="container py-3">
   <div class="row py-3">
-    <div class="col-md-2 offset-md-2">
+    <div class="col-md-3 offset-md-2">
       <h2>ユーザー編集</h2>
     </div>
   </div>
@@ -22,8 +22,13 @@
     </table>
   </div>
   <div class="row justify-content-center py-5">
-    <%= f.submit '変更を保存' %>
-    <% end %>
+    <div class="buttom p-3">
+      <%= f.submit '変更を保存', class:'btn btn-sm btn-primary' %>
+      <% end %>
+    </div>
+    <div class="buttom p-3">
+      <%= link_to "退会する", public_users_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class:'btn btn-sm btn-danger' %>
+    </div>
   </div>
   
 </div>

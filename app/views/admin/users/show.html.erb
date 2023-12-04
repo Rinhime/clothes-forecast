@@ -1,16 +1,62 @@
-<h2>（管理者用）ユーザー詳細</h2>
-<table>
-  <tr>
-    <th>会員ID</th>
-    <td><%= @user.id %></td>
-  </tr>
-  <tr>
-    <th>ユーザー名</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @user.email %></td>
-  </tr>
-</table>
-<!--ユーザーの投稿一覧入れる-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 py-5">
+      <h2>ユーザー詳細</h2>
+      <div class="row p-3 mx-3">
+      <%= image_tag @user.get_image(100,100), size: "150x150" %>
+      </div>
+      <table cellpadding="5">
+        <tr>
+          <th>会員ID</th>
+        </tr>
+        <tr>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <th>ユーザーネーム</th>
+        </tr>
+        <tr>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+        </tr>
+        <tr>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>投稿数</th>
+        </tr>
+        <tr>
+          <td>
+          <%= @posts.count %>
+        </td>
+        </tr>
+      </table>
+      <%= link_to "≪ユーザー一覧へ", admin_users_path %>
+    </div>
+  
+  <div class="col-md-7 py-5">
+    
+    <table cellpadding="10">
+      <thead>
+        <tr>
+          <th>気温</th>
+          <th>投稿内容</th>
+          <th>投稿日</th>
+        </tr>
+      </thead>
+      <% @posts.each do |post| %>
+      <tbody>
+        <tr>
+          <td><%= post.clothe.celsius %></td>
+          <td width="350px"><%= post.text %></td>
+          <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= link_to "削除する", admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class:'btn btn-sm btn-danger'%></td>
+        </tr>
+      </tbody>
+      <% end %>
+      <%= paginate @posts %>
+    </table>
+  </div>
+</div>

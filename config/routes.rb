@@ -15,12 +15,13 @@ Rails.application.routes.draw do
     # topのURL /public...
     get "/users/show" => "users#show"
     get "/users/show/eidt" => "users#edit"
+    patch  '/users/withdraw' => 'users#withdraw'
     # タグの検索で使用する
     get "search_tag" => "posts#search_tag"
     get "search" => "posts#search"
     # get "/post/search_tag/:id" => "posts#search_tag"
     resources :clothes, only: [:create, :index, :show]
-    resources :users, only: [:destoroy, :update] do
+    resources :users, only: [:update] do
       member do
         get :favorites
       end

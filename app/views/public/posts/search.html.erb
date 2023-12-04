@@ -19,6 +19,11 @@
             <%= user.name %>
             <% end %>
           </td>
+          <td>
+            <% @posts.each do |post| %>
+            <%= post.text %>
+            <% end %>
+          </td>
         </tr>
       
     </tbody>
