@@ -51,7 +51,7 @@
         <tr>
           <td><%= post.clothe.celsius %></td>
           <td width="350px">
-            <%= link_to admin_comments_path do %>
+            <%= link_to admin_post_path(post.id) do %>
             <%= post.text %>
             <% end %>
           </td>

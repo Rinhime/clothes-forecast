@@ -13,6 +13,13 @@ class Public::UsersController < ApplicationController
     redirect_to public_root_path
   end
   
+  def destroy
+      @user = current_user
+      @user.destroy
+      flash[:notice] = 'ユーザーを削除しました。'
+      redirect_to public_root_path
+  end
+  
   def edit
     @user = current_user
   end
