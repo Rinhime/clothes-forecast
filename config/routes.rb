@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resources :clothes, only: [:new, :create, :index, :show, :edit, :update]
     resources :users, only: [:index, :show]
     resources :posts, only: [:destroy, :index, :show] do
-      resources :comments, only: [:destroy]
+      resource :comments, only: [:destroy]
       
     end
   end

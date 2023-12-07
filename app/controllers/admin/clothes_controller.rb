@@ -15,7 +15,7 @@ class Admin::ClothesController < ApplicationController
   def create
     clothe = Clothe.new(clothe_params)
     clothe.save
-    redirect_to admin_clothes_path
+    redirect_to admin_clothe_path(clothe.id)
   end
   
   def edit
