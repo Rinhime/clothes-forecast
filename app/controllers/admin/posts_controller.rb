@@ -3,6 +3,7 @@ class Admin::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comment.all
+    # @user = User.find(params[:id])
   end
 
   def destroy
