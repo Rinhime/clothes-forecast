@@ -1,5 +1,5 @@
 <div class="container py-3">
-  <div class="row">
+  <div class="row py-3">
     <div class="col-md-2 p-3 m-3">
       <div class="serch_form">
         <% if user_signed_in? %>
@@ -23,10 +23,11 @@
       </div>
       <div class="row py-3">
         <% @clothes.each do |clothe| %>
-        <div class="col-md-1 mx-5">
+        <div class="col-md-2 mx-5">
           <%= link_to public_clothe_path(clothe.id) do %>
           <%= image_tag clothe.get_image(100,100), size: "70x250" %>
-          <%= clothe.celsius %>
+          <%= clothe.celsius %><br>
+          <%= clothe.introduction.truncate(13) %>
           <% end %>
         </div>
         <% end %>
