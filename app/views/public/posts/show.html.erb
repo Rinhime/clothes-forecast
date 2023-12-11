@@ -63,11 +63,13 @@
     </div>
     <div class="row py-3">
       <div class="col-md-5">
+      <% if @post.user != current_user %>
       <%= form_with model: [@post, @comment], url: public_post_comments_path(@post) do |f| %>
         <%= f.text_area :comment_text, placeholder: "コメントをここに", :size=>"40x5" %>
 
         <%= f.hidden_field :post_id, :value => @post.id %><br><br>
         <%= f.submit 'コメントする' %><br><br>
+      <% end %>
       <% end %>
       <%= link_to "≪投稿一覧へ",public_posts_path %>
       </div>

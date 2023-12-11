@@ -19,7 +19,7 @@
           <td><%= @user.email %></td>
         </tr>
       </table>
-      <p><%= link_to "編集する", public_users_show_eidt_path %></p>
+      <p><%= link_to "編集する", public_users_show_eidt_path, class:'btn btn-sm btn-success' %></p>
       <p><%= link_to "いいね一覧", favorites_public_user_path(@user) %></p>
     </div>
     <div class="col-md-7 py-5">
@@ -37,9 +37,13 @@
         <tbody>
           <tr>
             <td><%= post.clothe.celsius %></td>
-            <td width="350px"><%= post.text %></td>
+            <td width="350px">
+              <%= link_to public_post_path(post.id) do %>
+              <%= post.text %>
+              <% end %>
+            </td>
             <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= link_to "削除する", public_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+            <td><%= link_to "削除する", public_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:'btn btn-sm btn-danger'%></td>
           </tr>
         </tbody>
         <% end %>
