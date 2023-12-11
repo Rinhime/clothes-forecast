@@ -3,6 +3,15 @@
     <h2>服装登録</h2>
   </div>
   
+  <% if @clothe.errors.any? %>
+  <%= @clothe.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @clothe.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
   <div class="row justify-content-center">
     <%= form_with model:@clothe, url: admin_clothes_path do |f| %>
     <table cellpadding="7">

@@ -13,9 +13,12 @@ class Admin::ClothesController < ApplicationController
   end
   
   def create
-    clothe = Clothe.new(clothe_params)
-    clothe.save
-    redirect_to admin_clothe_path(clothe.id)
+    @clothe = Clothe.new(clothe_params)
+    if @clothe.save
+      redirect_to admin_clothe_path(clothe.id)
+    else
+      render :new
+    end
   end
   
   def edit

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   devise_for :clothes
-  # devise_for :favorites
-  # devise_for :comments
-  # devise_for :posts
   # 顧客用
 # URL /users/sign_in ...
   devise_for :users, skip: [:passwords], controllers: {
@@ -48,6 +45,5 @@ Rails.application.routes.draw do
       
     end
   end
-  
   
 end

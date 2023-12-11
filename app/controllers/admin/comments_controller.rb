@@ -1,9 +1,5 @@
 class Admin::CommentsController < ApplicationController
 
-  def index
-    @user = User.find(params[:id])
-  end
-
   def destroy
     # Comment.find(params[:id]).destroy
     comment = Comment.find_by(post_id: params[:post_id])

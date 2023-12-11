@@ -2,58 +2,49 @@
   <div class="row py-3">
     <h2>コメント一覧</h2>
   </div>
-    <div class="row py-3">
-      <div class="col-md-2">
-        <%= image_tag @post.user.get_image(100,100), size: "130x130" %><br>
-        <%= @post.user.name %>
-      </div>
-      <div class="col-md-3">
-        <table>
-          <tr>
-            <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-            <td><%= @post.clothe.celsius %></td>
-          </tr>
-          <tr>
-            <td>
-              <%= @post.text %><br>
-              <% @post.tags.each do |tag| %>
-              #<%= tag.name %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%# @post_tag_list.each do |tag| %>
-              <%#= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
-              <%#="(#{tag.books.count})" %>
-              <%# end %>
-              
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-md-5">
-        <h5>コメント（全<%= @comments.count %>件）</h5>
-        <table class="table" cellpadding="5">
-          <% @comments.each do |comment| %>
-          <tr>
-            <th width="110"><%= comment.user.name %></th>
-            <td><%= comment.comment_text %></td>
-            <td><%= link_to "削除する", admin_post_comments_path(comment.post.id,comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class:'btn btn-sm btn-danger'%></td>
-          </tr>
-          <% end %>
-        </table>
-      </div>
+  
+  <div class="row py-3">
+    <div class="col-md-2">
+      <%= image_tag @post.user.get_image(100,100), size: "130x130" %><br>
+      <%= @post.user.name %>
     </div>
-    <div class="row py-3">
-      <div class="col-md-5">
-      
+    
+    <div class="col-md-3">
+      <table>
+        <tr>
+          <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td><%= @post.clothe.celsius %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= @post.text %><br>
+            <% @post.tags.each do |tag| %>
+            #<%= tag.name %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="col-md-5">
+      <h5>コメント（全<%= @comments.count %>件）</h5>
+      <table class="table" cellpadding="5">
+        <% @comments.each do |comment| %>
+        <tr>
+          <th width="110"><%= comment.user.name %></th>
+          <td><%= comment.comment_text %></td>
+          <td><%= link_to "削除する", admin_post_comments_path(comment.post.id,comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" , class:'btn btn-sm btn-danger'%></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-md-5">
       <%= link_to "≪ユーザー詳細へ",admin_user_path(@post.id) %>
-      </div>
     </div>
-    <div class="row py-3">
-
-    </div>
+  </div>
 </div>

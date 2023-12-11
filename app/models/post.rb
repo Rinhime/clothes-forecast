@@ -14,6 +14,8 @@ class Post < ApplicationRecord
 before_validation :tags_count_check
 after_save :tag_set
 
+validates :text, presence: true
+
 def tags_count_check
   tag_names = self.post_tags_attributes.values.map{|o|o['tag_name']}.reject(&:blank?)
   #byebug
@@ -87,10 +89,5 @@ end
       @post = Post.all
     end
   end
- # private
-
- #   def downcase_name
- #     self.tag_name = tag_name.downcase if name.present?
- #   end
 
 end

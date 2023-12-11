@@ -11,6 +11,8 @@ before_action :authenticate_user!
       @posts = Post.includes(:post_tags).where('post_tags.tag_id': @tag.id).order(created_at: :desc)
     # 普通にページを表示させた場合
     else
+      
+      @post = Post.new
       @posts = Post.all.order(created_at: :desc)
     end
     @tag_list = Tag.all
@@ -36,9 +38,14 @@ before_action :authenticate_user!
       #@post.save_posts(tag_list)
       redirect_to public_post_path(@post)
     else
+      # @clothe = Clothe.find(params[:id])
+      # @post = Post.new
+      # @post.post_tags.build
+      # @tag = Tag.new
       @posts = Post.all
       @tag_list = Tag.all
       render :index
+      # redirect_to public_clothe_path(@clothe.id)
     end
   end
   
