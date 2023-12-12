@@ -18,7 +18,11 @@
         <tr>
           <td><%= user.name %></td>
           <td><%= post.clothe.celsius %></td>
-          <td><%= post.text %></td>
+          <td>
+            <%= link_to public_post_path(post.id) do %>
+            <%= post.text %>
+            <% end %>
+          </td>
           <td>♥<%= post.favorite.count %></td>
         </tr>
         <% end %>

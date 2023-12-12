@@ -7,16 +7,15 @@ before_action :authenticate_user!
       @posts = Post.posts_serach(params[:search])
     # タグで絞込んだ場合
     elsif params[:tag_id].present?
+      @post = Post.new
       @tag = Tag.find(params[:tag_id])
       @posts = Post.includes(:post_tags).where('post_tags.tag_id': @tag.id).order(created_at: :desc)
     # 普通にページを表示させた場合
     else
-      
       @post = Post.new
       @posts = Post.all.order(created_at: :desc)
     end
     @tag_list = Tag.all
-
   end
 
   def show
