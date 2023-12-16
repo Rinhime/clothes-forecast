@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+  root to: "homes#top"
   namespace :public do
-    root to: "homes#top"
+    
     # topのURL /public...
     get "/users/show" => "users#show"
     get "/users/show/eidt" => "users#edit"
