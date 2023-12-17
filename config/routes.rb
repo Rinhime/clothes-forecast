@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   namespace :public do
     
-    # topのURL /public...
+    
     get "/users/show" => "users#show"
     get "/users/show/eidt" => "users#edit"
     # patch  '/users/withdraw' => 'users#withdraw'
