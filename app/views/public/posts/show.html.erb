@@ -27,11 +27,6 @@
           </tr>
           <tr>
             <td>
-
-              <%# @post_tag_list.each do |tag| %>
-              <%#= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
-              <%#="(#{tag.books.count})" %>
-              <%# end %>
               <% if @post.favorited_by?(current_user) %>
                 <p>
                   <%= link_to public_post_favorites_path(@post), method: :delete do %>

@@ -2,7 +2,6 @@
   <div class="row py-3">
     <h2>服装詳細</h2>
   </div>
-  <!--ここから-->
   <div class="row py-3">
     <div class="col-md-3">
     <%= image_tag @clothe.get_image(100,100), size: "100x350" %>
@@ -12,9 +11,7 @@
         <%= @clothe.celsius %><br>
         <%= @clothe.introduction %>
       </div>
-  <!--ここまでadmin/clothe/showと同じ-->
       <div class="py-3">
-        
         <% if user_signed_in? %>
         <%= render "public/clothes/post_form", post: @post, clothe: @clothe %>
         <% end %>

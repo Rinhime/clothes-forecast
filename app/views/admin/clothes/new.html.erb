@@ -10,7 +10,7 @@
       <li><%= message %></li>
     <% end %>
   </ul>
-<% end %>
+  <% end %>
   
   <div class="row justify-content-center">
     <%= form_with model:@clothe, url: admin_clothes_path do |f| %>
@@ -22,9 +22,7 @@
       <tr>
         <th><h5>気温</h5></th>
         <td>
-          
           <%= f.select :celsius,["30~℃","25~30℃","20~25℃","16~20℃","12~16℃","8~12℃","5~8℃","5℃未満"] %>
-          
         </td>
       </tr>     
       <tr>
@@ -37,5 +35,4 @@
     <%= f.submit '登録する' %>
     <% end %>
   </div>
-  
 </div>
