@@ -8,7 +8,7 @@ class Public::ClothesController < ApplicationController
   def show
     unless user_signed_in?
     flash[:notice] = "ログインしてください"
-    redirect_to public_root_path
+    redirect_to root_path
     end
     @clothe = Clothe.find(params[:id])
     @post = Post.new
