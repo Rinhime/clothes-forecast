@@ -1,5 +1,5 @@
 class Admin::ClothesController < ApplicationController
-
+before_action :authenticate_admin!
   def new
     @clothe = Clothe.new
   end

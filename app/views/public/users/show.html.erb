@@ -43,7 +43,11 @@
               <% end %>
             </td>
             <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= link_to "削除する", public_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:'btn btn-sm btn-danger'%></td>
+            <td>
+              <% if post.user == current_user %>
+              <%= link_to "削除する", public_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:'btn btn-sm btn-danger'%>
+              <% end %>
+            </td>
           </tr>
         </tbody>
         <% end %>
